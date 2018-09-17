@@ -69,4 +69,17 @@ public class PlayerMovement : MonoBehaviour {
 		}
 
 	}
+
+	void OnCollisionEnter2D(Collision2D other) {
+		if(other.gameObject.tag == "Enemy") {
+			Debug.Log("Player is Ded");
+		}
+	}
+
+	void OnTriggerEnter2D(Collider2D other) {
+		if(other.tag == "Enemy") {
+			Debug.Log("Enemy is Ded");
+			m_rigidbody.velocity = new Vector2(m_rigidbody.velocity.x, jumpForce);
+		}
+	}
 }
