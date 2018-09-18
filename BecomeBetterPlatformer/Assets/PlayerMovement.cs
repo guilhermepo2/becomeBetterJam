@@ -34,7 +34,7 @@ public class PlayerMovement : MonoBehaviour {
 		Run();
 		Jump();
 		FlipSprite();
-		// AnimationLogic();
+		AnimationLogic();
 	}
 
 	private void Run() {
@@ -53,9 +53,11 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	void AnimationLogic() {
+		Debug.Log(m_rigidbody.velocity.x);
+
 		if(Mathf.Abs(m_rigidbody.velocity.y) > 0) {
 			m_animator.Play("Jumping");
-		} else if(Mathf.Abs(m_rigidbody.velocity.x) > Mathf.Epsilon) {
+		} else if(Mathf.Abs(m_rigidbody.velocity.x) > 0.1f) {
 			m_animator.Play("Running");
 		} else {
 			m_animator.Play("Idle");
