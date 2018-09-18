@@ -19,10 +19,12 @@ public class PlayerMovement : MonoBehaviour {
 	private bool m_isAlive;
 	private Rigidbody2D m_rigidbody;
 	private BoxCollider2D m_feetCollider;
+	private Animator m_animator;
 
 	void Start () {
 		m_rigidbody = GetComponent<Rigidbody2D>();
 		m_feetCollider = GetComponent<BoxCollider2D>();
+		m_animator = GetComponent<Animator>();
 		m_isAlive = true;	
 	}
 	
@@ -31,6 +33,8 @@ public class PlayerMovement : MonoBehaviour {
 
 		Run();
 		Jump();
+		FlipSprite();
+		// AnimationLogic();
 	}
 
 	private void Run() {
@@ -40,6 +44,22 @@ public class PlayerMovement : MonoBehaviour {
 
 		movement = Mathf.Clamp(movement, -maxPlayerVelocity, maxPlayerVelocity);
 		m_rigidbody.velocity = new Vector2(movement, m_rigidbody.velocity.y);
+	}
+
+	void FlipSprite() {
+		if(Mathf.Abs(m_rigidbody.velocity.x) > 0) {
+			transform.localScale = new Vector3(Mathf.Sign(m_rigidbody.velocity.x), transform.localScale.y, transform.localScale.z);
+		}
+	}
+
+	void AnimationLogic() {
+		if(Mathf.Abs(m_rigidbody.velocity.y) > 0) {
+			m_animator.Play("Jumping");
+		} else if(Mathf.Abs(m_rigidbody.velocity.x) > Mathf.Epsilon) {
+			m_animator.Play("Running");
+		} else {
+			m_animator.Play("Idle");
+		}
 	}
 
 	private void Jump() {
