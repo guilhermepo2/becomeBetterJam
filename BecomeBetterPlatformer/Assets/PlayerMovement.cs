@@ -95,7 +95,6 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	private IEnumerator RestartLevel() {
-		Time.timeScale = 0.5f;	
 		yield return new WaitForSeconds(3.0f);
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 	}
@@ -111,8 +110,8 @@ public class PlayerMovement : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other) {
 		if(other.tag == "Enemy") {
-			Debug.Log("Enemy is Ded");
-			m_rigidbody.velocity = new Vector2(m_rigidbody.velocity.x, jumpForce);
+			m_rigidbody.velocity = new Vector2(m_rigidbody.velocity.x, jumpForce / 2);
+			other.gameObject.GetComponentInParent<DummyEnemy>().Die();
 		}
 	}
 }
