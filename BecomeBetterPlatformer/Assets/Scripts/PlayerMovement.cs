@@ -95,7 +95,7 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	private IEnumerator RestartLevel() {
-		yield return new WaitForSeconds(3.0f);
+		yield return new WaitForSeconds(2.0f);
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 	}
 
@@ -112,6 +112,8 @@ public class PlayerMovement : MonoBehaviour {
 		if(other.tag == "Enemy") {
 			m_rigidbody.velocity = new Vector2(m_rigidbody.velocity.x, jumpForce / 2);
 			other.gameObject.GetComponentInParent<DummyEnemy>().Die();
+		} else if(other.tag == "Bounds") {
+			StartCoroutine(RestartLevel());
 		}
 	}
 

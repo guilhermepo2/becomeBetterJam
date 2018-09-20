@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - KillableEnemy
   - Wall
+  - Bounds
   layers:
   - Default
   - TransparentFX
