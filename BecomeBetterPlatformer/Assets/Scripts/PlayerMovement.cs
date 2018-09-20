@@ -114,4 +114,6 @@ public class PlayerMovement : MonoBehaviour {
 			other.gameObject.GetComponentInParent<DummyEnemy>().Die();
 		}
 	}
+
+	public bool IsAlive() { return m_isAlive; }
 }
