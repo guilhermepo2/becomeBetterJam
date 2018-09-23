@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour {
 
+	[Header("Audio Related")]
+	public AudioClip jumpClip;
+	public AudioClip hitClip;
 	[Header("Move Control")]
 	public float maxPlayerVelocity = 5f;
 	public float horizontalDamping = 0.15f;
@@ -90,6 +93,7 @@ public class PlayerMovement : MonoBehaviour {
 			m_groundedRemember = 0;
 
 			m_rigidbody.velocity = new Vector2(m_rigidbody.velocity.x, jumpForce);
+			SoundManager.instance.PlayClip(jumpClip);
 		}
 
 	}
@@ -112,6 +116,7 @@ public class PlayerMovement : MonoBehaviour {
 		if(other.tag == "Enemy") {
 			m_rigidbody.velocity = new Vector2(m_rigidbody.velocity.x, jumpForce / 2);
 			other.gameObject.GetComponentInParent<DummyEnemy>().Die();
+			SoundManager.instance.PlayClip(hitClip);
 		} else if(other.tag == "Bounds") {
 			StartCoroutine(RestartLevel());
 		}
