@@ -119,6 +119,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpClip: {fileID: 8300000, guid: 3dabdfacbf6d14fdfb900c520dc231bf, type: 3}
+  hitClip: {fileID: 8300000, guid: 6c142e073b5124c6eaac19e39d3db90e, type: 3}
+  deathHitClip: {fileID: 8300000, guid: a3dc6bba7d21a44cc894d858ebdc7e7c, type: 3}
   maxPlayerVelocity: 5
   horizontalDamping: 0.65
   jumpForce: 15

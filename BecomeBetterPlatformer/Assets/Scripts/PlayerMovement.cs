@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour {
 	[Header("Audio Related")]
 	public AudioClip jumpClip;
 	public AudioClip hitClip;
+	public AudioClip deathHitClip;
 	[Header("Move Control")]
 	public float maxPlayerVelocity = 5f;
 	public float horizontalDamping = 0.15f;
@@ -99,7 +100,12 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	private IEnumerator RestartLevel() {
+		SoundManager.instance.PlayClip(deathHitClip);
+		SoundManager.instance.PlayGameOverMusic();
+
 		yield return new WaitForSeconds(2.0f);
+		
+		SoundManager.instance.PlayRegularMusic();
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 	}
 

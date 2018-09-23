@@ -2393,11 +2393,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 114813222785809902, guid: d89c7662448ef4bd8b18dcb1eb6ab349,
-        type: 2}
-      propertyPath: hitClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 6c142e073b5124c6eaac19e39d3db90e, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d89c7662448ef4bd8b18dcb1eb6ab349, type: 2}
   m_IsPrefabAsset: 0
@@ -2681,6 +2676,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicSource: {fileID: 1940176900}
+  standardMusic: {fileID: 8300000, guid: 337da52121bcc4d0b9ebf33d25591e6b, type: 3}
+  gameOverMusic: {fileID: 8300000, guid: 2c7dd648558bc47b2929c47d52b4a488, type: 3}
   sfxSource: {fileID: 1940176899}
 --- !u!1 &1972362686
 GameObject:
