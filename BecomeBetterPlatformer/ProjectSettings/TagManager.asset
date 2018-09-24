@@ -8,6 +8,7 @@ TagManager:
   - KillableEnemy
   - Wall
   - Bounds
+  - Hazard
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - 
   - Ground
   - Enemy
-  - 
+  - Hazard
   - 
   - 
   - 

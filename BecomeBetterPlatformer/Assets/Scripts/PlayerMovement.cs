@@ -109,22 +109,31 @@ public class PlayerMovement : MonoBehaviour {
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 	}
 
+	void PlayerDead() {
+		m_rigidbody.velocity = new Vector2(-Mathf.Sign(transform.localScale.x) * jumpForce / 4, jumpForce / 2);
+		m_isAlive = false;
+		m_feetCollider.enabled = false;
+		StartCoroutine(RestartLevel());
+	}
+
 	void OnCollisionEnter2D(Collision2D other) {
 		if(other.gameObject.tag == "Enemy") {
-			m_rigidbody.velocity = new Vector2(-Mathf.Sign(transform.localScale.x) * jumpForce / 4, jumpForce / 2);
-			m_isAlive = false;
-			m_feetCollider.enabled = false;
-			StartCoroutine(RestartLevel());
+			PlayerDead();
 		}
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
+		Debug.Log("Collider");
+		Debug.Log(other.tag);
+
 		if(other.tag == "Enemy") {
 			m_rigidbody.velocity = new Vector2(m_rigidbody.velocity.x, jumpForce / 2);
 			other.gameObject.GetComponentInParent<DummyEnemy>().Die();
 			SoundManager.instance.PlayClip(hitClip);
 		} else if(other.tag == "Bounds") {
 			StartCoroutine(RestartLevel());
+		} else if(other.tag == "Hazard") {
+			PlayerDead();
 		}
 	}
 
